@@ -1,0 +1,47 @@
+{
+  "name": "@hi.donggi/test-231114",
+  "version": "1.0.0",
+  "description": "Simple practice package",
+  "files": [
+    "lib/**/*"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./lib/esm/types/index.d.ts",
+        "default": "./lib/esm/index.mjs"
+      },
+      "require": {
+        "types": "./lib/cjs/types/index.d.ts",
+        "default": "./lib/cjs/index.js"
+      }
+    }
+  },
+  "types": "./lib/cjs/types/index.d.ts",
+  "main": "./lib/cjs/index.js",
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "build:cjs": "npx tsc -p ./configs/tsconfig.cjs.json",
+    "build:esm": "npx tsc -p ./configs/tsconfig.esm.json && mv ./lib/esm/index.js ./lib/esm/index.mjs",
+    "test": "export TS_NODE_PROJECT=./configs/tsconfig.cjs.json && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Dong-gi/test-231114.git"
+  },
+  "author": "hi.donggi@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dong-gi/test-231114/issues"
+  },
+  "homepage": "https://github.com/Dong-gi/test-231114#readme",
+  "devDependencies": {
+    "@types/chai": "^4.3.10",
+    "@types/mocha": "^10.0.4",
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  }
+}
