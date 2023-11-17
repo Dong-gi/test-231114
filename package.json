@@ -1,6 +1,6 @@
 {
   "name": "@hi.donggi/test-231114",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple practice package",
   "files": [
     "lib/**/*"
@@ -8,23 +8,23 @@
   "exports": {
     ".": {
       "import": {
-        "types": "./lib/esm/types/index.d.ts",
+        "types": "./lib/types/index.d.ts",
         "default": "./lib/esm/index.mjs"
       },
       "require": {
-        "types": "./lib/cjs/types/index.d.ts",
+        "types": "./lib/types/index.d.ts",
         "default": "./lib/cjs/index.js"
       }
     }
   },
-  "types": "./lib/cjs/types/index.d.ts",
+  "types": "./lib/types/index.d.ts",
   "main": "./lib/cjs/index.js",
   "scripts": {
-    "clean": "rm -rf ./lib",
-    "build": "npm run clean && npm run build:esm && npm run build:cjs",
+    "clean": "rm -rf ./lib hi.donggi-test-*.tgz",
+    "build": "npm run clean && npm audit --omit dev && npm run build:esm && npm run build:cjs && npm pack",
     "build:cjs": "npx tsc -p ./configs/tsconfig.cjs.json",
     "build:esm": "npx tsc -p ./configs/tsconfig.esm.json && mv ./lib/esm/index.js ./lib/esm/index.mjs",
-    "test": "export TS_NODE_PROJECT=./configs/tsconfig.cjs.json && mocha"
+    "test": "env TS_NODE_PROJECT=./configs/tsconfig.cjs.json npx mocha"
   },
   "repository": {
     "type": "git",
@@ -39,7 +39,15 @@
   "devDependencies": {
     "@types/chai": "^4.3.10",
     "@types/mocha": "^10.0.4",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "chai": "^4.3.10",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-mocha": "^10.2.0",
+    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-promise": "^5.2.0",
     "mocha": "^10.2.0",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
