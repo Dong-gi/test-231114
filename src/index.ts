@@ -1,13 +1,6 @@
-export class SomeThing {
-    /**
-     * This will do something
-     * @returns Something different string
-     */
-    public doSomething (): string {
-        return `Hello World@${new Date().toISOString()}`
-    }
-}
+export * from './module/a.js';
+export * from './module/b.js';
+export * from './module/c.js';
 
-export default {
-    SomeThing
-}
+import { A } from './module/a.js';
+new A().do();
